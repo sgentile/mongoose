@@ -1,0 +1,49 @@
+http://nodetuts.com/tutorials/21-nodejs-mongodb-and-mongoose-11.html#video
+make data folder  ie.  under workspace/mongooseexample   mkdir data
+mongod --dbpath ./data/   leave this running in own terminal
+
+open new terminal
+npm install mongoose
+
+create example.js
+type in below in --- ie --
+
+to run it:
+run node example.js
+
+check work:
+mongo
+use mydatabase
+show collections
+db.posts.find()
+
+db.posts.remove() will delete them
+
+--- ie ---
+
+var mongoose = require('mongoose'),
+	Schema = mongoose.Schema;
+
+var PostSchema = new Schema({
+	title: String,
+	body: String,
+	date: Date
+});
+
+mongoose.connect('mongodb://localhost/mydatabase');
+mongoose.model('Post', PostSchema);
+
+var Post = mongoose.model('Post')
+
+var post = new Post();
+post.title = "new post 2";
+post.body = "sample post 2";
+post.date= Date.now();
+
+post.save(function(err){
+	if(err){
+		throw err;
+	}
+	console.log('saved');
+	mongoose.disconnect();
+});
