@@ -1,4 +1,4 @@
 *.class
 *.pyc
 *.pyo
-test
+data/
