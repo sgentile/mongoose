@@ -19,6 +19,7 @@
     <body>
 
 <body>
+<p>check out https://github.com/LuvDaSun/jshtml for more info on jshtml</o>
 @writeBody();
 </body>
 </html>
