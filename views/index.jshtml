@@ -1,0 +1,54 @@
+<h1>@locals.title</h1>
+<p>@locals.message</p>
+
+<h1>Mongoose</h1>
+        <p>This uses the following: http://nodetuts.com/tutorials/21-nodejs-mongodb-and-mongoose-11.html#video</p>
+        <p>run mkdir to create a data directory inside the folder</p>
+        <p>run mongod --dbpath ./data/  from the folder (not inside data)</p>
+        <p>see the readme, use node to run example.js</p>
+        
+        <p>Sample pulling data - make sure server is running, mongodb, etc.. node express.js</p>
+        <label for="title">Title:</label>
+        <input type='text' id="title"/>
+        <label for="body">Body:</label>
+        <input type='text' id="body"/>
+        <input type="button" id="addDataBtn" value="Add Post"/>
+        
+        <div id="results"></div>
+        <script>
+        	function getData(){
+        		//clear the results:
+        		$("#results").empty();
+        		$.getJSON('http://localhost:3000/post', function(data) {
+				  var items = [];
+				
+				  $.each(data, function(key, val) {
+				    items.push('<li id="' + key + '">Title: ' + val.title + " , body: " + val.body +  " , state: " + val.state + ", on " + val.date + '</li>');
+				  });
+				
+				  $('<ul/>', {
+				    'class': 'my-new-list',
+				    html: items.join('')
+				  }).appendTo('#results');
+				});
+        	}
+        	function addData(theTitle, theBody){
+        		var post = {
+        			title:theTitle,
+        			body:theBody
+        		}
+        		
+        		$.post('http://localhost:3000/post', post, function(data) {
+				   getData();
+				 }, "json");
+        	}
+        	$(function(){
+        		getData();
+        		
+        		$("#addDataBtn").click(function(){
+        			var title = $("#title").val();
+        			var body = $("#body").val();
+        			addData(title, body);
+        		});
+			});
+        </script>

@@ -9,6 +9,9 @@ app.configure(function(){
     app.use(app.router);
 });
 
+app.set('view engine', 'jshtml');
+
+
 var CommentSchema = new Schema({
 	email: String,
 	body: String
@@ -54,6 +57,12 @@ var Post = mongoose.model('Post')
 var Comment = mongoose.model('Comment');
 
 app.get("/", function(req, res){
+	res.render("index", {
+		title: "Test",
+		message: "Rendered via jshtml"
+	});
+});
+app.get("/post", function(req, res){
 	
 	var draft = 'draft';
 	Post.byState(draft, function(err, posts){
@@ -62,7 +71,7 @@ app.get("/", function(req, res){
 	
 	//res.json({"name":"Steve"});
 });
-app.post('/', function(req, res){
+app.post('/post', function(req, res){
 	var post2 = new Post();
 	post2.title = req.body.title;
 	post2.body = req.body.body;
