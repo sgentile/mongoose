@@ -19,7 +19,9 @@
     <body>
 
 <body>
-<p>check out https://github.com/LuvDaSun/jshtml for more info on jshtml</o>
+<p>check out https://github.com/LuvDaSun/jshtml for more info on jshtml</p>
+<p><a href="/">home</a>
+<p><a href="list">list</a>
 @writeBody();
 </body>
 </html>
