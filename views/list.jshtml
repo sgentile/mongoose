@@ -1,0 +1,8 @@
+<h3>Posts</h3>
+<ul>
+	@locals.draftPosts.forEach(function(post, index){
+		<li>
+		 	@post.title
+		</li>
+	});
+</ul>
