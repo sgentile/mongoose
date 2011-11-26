@@ -1,3 +1,5 @@
+<script src="/js/index.js"></script>
+
 <h1>@locals.title</h1>
 <p>@locals.message</p>
 
@@ -15,40 +17,16 @@
         <input type="button" id="addDataBtn" value="Add Post"/>
         
         <div id="results"></div>
-        <script>
-        	function getData(){
-        		//clear the results:
-        		$("#results").empty();
-        		$.getJSON('http://localhost:3000/post', function(data) {
-				  var items = [];
-				
-				  $.each(data, function(key, val) {
-				    items.push('<li id="' + key + '">Title: ' + val.title + " , body: " + val.body +  " , state: " + val.state + ", on " + val.date + '</li>');
-				  });
-				
-				  $('<ul/>', {
-				    'class': 'my-new-list',
-				    html: items.join('')
-				  }).appendTo('#results');
-				});
-        	}
-        	function addData(theTitle, theBody){
-        		var post = {
-        			title:theTitle,
-        			body:theBody
-        		}
-        		
-        		$.post('http://localhost:3000/post', post, function(data) {
-				   getData();
-				 }, "json");
-        	}
-        	$(function(){
-        		getData();
-        		
-        		$("#addDataBtn").click(function(){
-        			var title = $("#title").val();
-        			var body = $("#body").val();
-        			addData(title, body);
-        		});
-			});
-        </script>
+        
+        <ul data-bind="foreach: posts">
+        <li>
+            <strong data-bind="text: title"></strong>
+            <ul>
+            	<li>Body Text: <span data-bind="text: body"></span></li>
+            	<li>Body Html: <span data-bind="html: body"></span></li>
+            	<li>Date: <span data-bind="text: date"></span></li>
+            	<li>State: <span data-bind="text: state"></span></li>
+            </ul>
+        </li>
+    </ul>
+        

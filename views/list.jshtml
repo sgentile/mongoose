@@ -1,4 +1,6 @@
 <h3>Posts</h3>
+<p>Your values:</p>
+ 
 <ul>
 	@locals.draftPosts.forEach(function(post, index){
 		<li>

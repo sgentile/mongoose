@@ -5,11 +5,12 @@ app = module.exports = express.createServer();
 
 app.configure(function(){
     app.use(express.methodOverride());
-    app.use(express.bodyParser());
+    //app.use(express.bodyParser());
     app.use(app.router);
+    app.set('views', __dirname + '/views');
+    app.set('view engine', 'jshtml');
+    app.use(express.static(__dirname + '/public'));
 });
-
-app.set('view engine', 'jshtml');
 
 
 var CommentSchema = new Schema({
