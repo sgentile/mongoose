@@ -5,7 +5,7 @@ app = module.exports = express.createServer();
 
 app.configure(function(){
     app.use(express.methodOverride());
-    //app.use(express.bodyParser());
+    app.use(express.bodyParser());
     app.use(app.router);
     app.set('views', __dirname + '/views');
     app.set('view engine', 'jshtml');
@@ -82,6 +82,7 @@ app.get("/post", function(req, res){
 });
 app.post('/post', function(req, res){
 	var post2 = new Post();
+	
 	post2.title = req.body.title;
 	post2.body = req.body.body;
 	

@@ -26,6 +26,9 @@
             	<li>Body Html: <span data-bind="html: body"></span></li>
             	<li>Date: <span data-bind="text: date"></span></li>
             	<li>State: <span data-bind="text: state"></span></li>
+            	<li> Comments: <br/>
+	            	
+            	</li>
             </ul>
         </li>
     </ul>
